@@ -1,0 +1,13 @@
+from ubuntu:16.04
+
+WORKDIR /frontend-example-docker
+COPY . .
+
+RUN apt update && apt install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install -y nodejs
+RUN npm install
+
+EXPOSE 5000
+
+ENTRYPOINT API_URL=http://localhost:8000 npm start

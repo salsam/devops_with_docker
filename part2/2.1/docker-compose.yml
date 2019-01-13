@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  backend:
+      # Using image created before hardcoding FRONT_URL to allow easier configuration here
+      image: '1.6'
+      environment:
+        - FRONT_URL=http://localhost:5000
+      ports:
+        - 8000:8000
+      volumes:
+        - ${PWD}/logs.txt:/backend-example-docker/logs.txt
+      container_name: backend
+  
+  frontend:
+    # Using image created before hardcoding API_URL to allow easier configuration here
+    image: '1.5'
+    environment:
+      - API_URL=http://localhost:8000
+    ports:
+      - 5000:5000
+    container_name: frontend
